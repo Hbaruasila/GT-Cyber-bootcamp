@@ -15,17 +15,12 @@ Save and submit the completed file for your homework submission.
 1. Cron job for backing up the `/var/log/auth.log` file:
 
 0 6 * * 3 tar -czvvf auth_backup.tgz /var/log/auth.log
----
 
 ### Step 3: Write Basic Bash Scripts
 
 1. Brace expansion command to create the four subdirectories:
 
 2. Paste your `system.sh` script edits below:
-
-    ```bash
-    #!/bin/bash
-    [Your solution script contents here]
 
 #!bin/bash
 free -th > ~/backups/freeman/free_mem_usage.txt
@@ -35,9 +30,6 @@ top > ~/backups/freedisk/free_disk.txt
 ---
 
 ### Step 4. Manage Log File Sizes
-    ```bash
-    [Your logrotate scheme edits here]
-    ```
 /var/log/auth.log {
 	rotate 180
 	weekly
