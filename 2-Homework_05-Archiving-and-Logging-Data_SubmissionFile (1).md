@@ -1,11 +1,11 @@
 #### Critical Analysis Question
 
-##- Why wouldn't you use the options `-x` and `-c` at the same with `tar`?
+#- Why wouldn't you use the options `-x` and `-c` at the same with `tar`?
 	-x is to extract the tar file while -c is to create it.
 
 
 
-##1. Cron job for backing up the `/var/log/auth.log` file:
+#1. Cron job for backing up the `/var/log/auth.log` file:
 
 0 6 * * 3 tar -czvvf auth_backup.tgz /var/log/auth.log
 
