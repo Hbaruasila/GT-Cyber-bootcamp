@@ -5,7 +5,7 @@ The files in this repository were used to configure the network depicted below.
 Update the path with the name of your diagram] 
 GT-Cyber-bootcamp/Saurabh's_NetDiagram.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the __docker___ file may be used to install only certain pieces of it, such as Filebeat.
 
 ---
   - name: installing and launching filebeat
@@ -77,15 +77,14 @@ Only the __Security Group___ machine can accept connections from the Internet. A
 	172.125.54.185
 	10.0.0.9
 Machines within the network can only be accessed by __Jump box___.
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
+- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?
 	-Jump box has access to my ELK VM the ip address 10.0.0.9
 A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Jump Box | YES                 | 172.125.54.185       |
+|ELK Server| YES                 | 40.71.64.81          |
 
 ### Elk Configuration
 
@@ -100,30 +99,34 @@ The playbook implements the following tasks:
 •	Download and launch elk container sebp
 •	Enable elk ports on 5601, 9200, 5044
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
-
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
-
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
 - _TODO: List the IP addresses of the machines you are monitoring_
+	- 10.0.0.8, 10.0.0.7, 10.0.0.10
 
 We have installed the following Beats on these machines:
 - _TODO: Specify which Beats you successfully installed_
-	-Filebeats and Metricbeats
+	- Metricbeat & Filebeat
 These Beats allow us to collect the following information from each machine:
 - _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- Metricbeat periodically logs its internal metrics that have changed in the last period. For each metric that changed, the delta from the value at the beginning of the period is logged.
+- Filebeat modules are ready-made configurations parsing the data and analyzing it in Kibana with dashboards.
 
 ### Using the Playbook
-In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
+To use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook and navigate to ____ to check that the installation worked as expected.
+- Copy the _my-playbook.yml file to _playbook____.
+- Update the ___my-playbook.yml__ file to include the host: webservers  
+- Run the playbook and navigate to curl localhost/setup.php to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
+_TODO: Answer the following questions to fill in the blanks: _
+- _Which file is the playbook? Where do you copy it? _
+-the file would be in /etc/ansible
+- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on? _
+- sudo apt install docker.io -This is where you can get the docker container
+- You can install the Elk server by updating the host config to the elk server ip address and specify your playbook to update only on ELK servers.
+- You can also update you host config to specify where the filebeat webservers should be.
 - _Which URL do you navigate to check that the ELK server is running?
+	- http://[YOUR_ELK_SERVER_IP_ADDRESS]:5601/app/kibana#/home
 
